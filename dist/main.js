@@ -16,7 +16,27 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_task__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/task */ \"./src/modules/task.js\");\n\n\nconst test = new _modules_task__WEBPACK_IMPORTED_MODULE_0__.Task('study for final');\n\nconsole.log(test);\nconsole.log(test.dueDate);\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_task__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/task */ \"./src/modules/task.js\");\n/* harmony import */ var _modules_category__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/category */ \"./src/modules/category.js\");\n/* harmony import */ var _modules_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/dom */ \"./src/modules/dom.js\");\n\n\n\n\nlet category = new _modules_category__WEBPACK_IMPORTED_MODULE_1__.Category('School');\n\nlet task = new _modules_task__WEBPACK_IMPORTED_MODULE_0__.Task('JavaScript Final', 'study factory functions', '3/2/2021');\ncategory.addTask(task);\n\ntask = new _modules_task__WEBPACK_IMPORTED_MODULE_0__.Task('Math Final', 'study discrete math', '3/2/2021');\ncategory.addTask(task);\n\ntask = new _modules_task__WEBPACK_IMPORTED_MODULE_0__.Task('History Final', 'study french revolution', '3/2/2021');\ncategory.addTask(task);\n\nconsole.log(category);\n(0,_modules_dom__WEBPACK_IMPORTED_MODULE_2__.addNewTask)();\n\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/category.js":
+/*!*********************************!*\
+  !*** ./src/modules/category.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Category\": () => (/* binding */ Category)\n/* harmony export */ });\nclass Category {\n    constructor(name) {\n        this.name = name;\n        this.tasks = [];\n    }\n\n    set updateName(name) {\n        this.name = name;\n    }\n\n    addTask(task) {\n        this.tasks.push(task);\n    }\n\n    deleteTask(taskIndex) {\n        this.tasks.splice(taskIndex, 1);\n    }\n\n}\n\n//# sourceURL=webpack://todo-list/./src/modules/category.js?");
+
+/***/ }),
+
+/***/ "./src/modules/dom.js":
+/*!****************************!*\
+  !*** ./src/modules/dom.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"addNewTask\": () => (/* binding */ addNewTask)\n/* harmony export */ });\n/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./task */ \"./src/modules/task.js\");\n/* harmony import */ var _category__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./category */ \"./src/modules/category.js\");\n\n\n\nconst newTaskBtn = document.querySelector('#new-button');\n\nfunction addNewTask() {\n    newTaskBtn.addEventListener('click', () => {\n        createNewTaskDom();\n    });\n}\n\nfunction createNewTaskDom() {\n    const taskContainer = document.querySelector('#task-container');\n    taskContainer.innerHTML += `\n    <div class=\"task\">\n        <div class=\"task-left\">\n            <img src=\"assets/images/square-icon.svg\"/>\n            <span class=\"description\">Description</span>\n        </div>\n        <div class=\"task-right\">\n            <span class=\"duedate\">No Due Date</span>\n            <div class=\"task-action-button\">\n                <img src=\"assets/images/edit-icon.svg\"/>\n                <img src=\"assets/images/delete-icon.svg\"/>\n            </div>\n        </div>\n    </div>\n    `;\n}\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/modules/dom.js?");
 
 /***/ }),
 
@@ -26,7 +46,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mod
   \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Task\": () => (/* binding */ Task)\n/* harmony export */ });\nclass Task {\n    constructor(name, dueDate = 'No Date') {\n        this.name = name;\n        this.dueDate = dueDate;\n    }\n}\n\n\n\n//# sourceURL=webpack://todo-list/./src/modules/task.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Task\": () => (/* binding */ Task)\n/* harmony export */ });\nclass Task {\n    constructor(name, descr, dueDate) {\n        this.name = name;\n        this.descr = descr;\n        this.dueDate = dueDate;\n    }\n\n    set updateName(name) {\n       this.name = name;\n    }\n\n    set updateDueDate(dueDate) {\n        this.dueDate = dueDate;\n    }\n\n    set updateDescr(descr) {\n        this.descr = descr;\n    }\n}\n\n\n\n//# sourceURL=webpack://todo-list/./src/modules/task.js?");
 
 /***/ })
 
