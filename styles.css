@@ -75,7 +75,7 @@ body {
     font-size: large;
 }
 
-#category {
+#category-title {
     font-weight: 600;
     font-size: x-large;
     color: #FCF6F5FF;
@@ -194,6 +194,10 @@ body {
     user-select: none;
 }
 
+.description {
+    cursor: pointer;
+}
+
 .task-right {
     display: flex;
     align-items: center;
@@ -257,4 +261,26 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #85B3D1FF;
+}
+
+[contenteditable="true"]:active, [contenteditable="true"]:focus {
+    width: 225px;
+    border: none;
+    outline: none;
+}
+
+.task-left [contenteditable]:empty::before {
+    content: 'Task Description';
+    color: rgba(0,0,0,0.1);
+}
+
+.category-button [contenteditable]:empty::before {
+    content: 'Category';
+    color: rgba(0,0,0,0.1);
+}
+
+input[type="date"] {
+    outline: none;
+    border: none;
+    width: 130px;
 }
