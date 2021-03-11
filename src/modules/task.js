@@ -1,7 +1,6 @@
 export class Task {
-    constructor(name, descr, dueDate) {
+    constructor(name, dueDate) {
         this.name = name;
-        this.descr = descr;
         this.dueDate = dueDate;
     }
 
@@ -13,8 +12,9 @@ export class Task {
         this.dueDate = dueDate;
     }
 
-    set updateDescr(descr) {
-        this.descr = descr;
+    set updateDescr(name) {
+        this.name = name;
     }
 }
+
 

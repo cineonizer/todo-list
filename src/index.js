@@ -1,20 +1,24 @@
 import {Task} from './modules/task';
 import {Category} from './modules/category';
-import {addNewTask} from './modules/dom';
+import {createTaskDom, editTaskDom, deleteTaskDom} from './modules/dom';
 
-let category = new Category('School');
 
-let task = new Task('JavaScript Final', 'study factory functions', '3/2/2021');
-category.addTask(task);
+const newTaskBtn = document.querySelector('#new-button');
+const category = new Category(document.querySelector('#title-name').innerText);
 
-task = new Task('Math Final', 'study discrete math', '3/2/2021');
-category.addTask(task);
+newTaskBtn.addEventListener('click', () => {
+    createTaskDom();
+    const task = new Task('Task Description', 'Tentative');
+    category.tasks.push(task);
+});
 
-task = new Task('History Final', 'study french revolution', '3/2/2021');
-category.addTask(task);
+document.addEventListener('keydown', (e) => {
+    editTaskDom(e);
+    if (e.key === 'Enter' && e.target.className === 'description') {
+        console.log(e.target.innerText);
+    }
+});
 
-console.log(category);
-addNewTask();
 
 
 
