@@ -21,7 +21,7 @@ function createTaskDom() {
 
 function editTaskDom(e) {
     const str = e.target.innerText;
-    const charMax = 20;
+    const charMax = 25;
 
     if (e.key === 'Enter') e.target.blur();
 
