@@ -112,6 +112,7 @@ body {
 
 .category-button span {
     font-size: large;
+    white-space: nowrap;
 }
 
 .action-button {
@@ -130,6 +131,27 @@ body {
 
 .action-button img:hover {
     opacity: 1;
+}
+
+#new-category-button {
+    width: 85%;
+    margin: 5px 0 0 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    transition: background-color .125s linear;
+    padding: 5px 0;
+    border-radius: 7.5px;
+    user-select: none;
+}
+
+#new-category-button:hover {
+    background-color: #85B3D1FF;
+    cursor: pointer;
+}
+
+#new-category-button img {
+    padding: 0 12px 0 15px;
 }
 
 #main {
@@ -224,8 +246,8 @@ body {
     margin-right: 15px;
 }
 
-#new-button {
-    width: 127px;
+#new-task-button {
+    width: 128px;
     display: flex;
     align-items: center;
     transition: background-color .125s linear;
@@ -235,12 +257,12 @@ body {
     user-select: none;
 }
 
-#new-button:hover {
+#new-task-button:hover {
     background-color: #85B3D1FF;
     cursor: pointer;
 }
 
-#new-button img {
+#new-task-button img {
     padding: 0 12px 0 15px;
 }
 
@@ -264,7 +286,7 @@ body {
 }
 
 [contenteditable="true"]:active, [contenteditable="true"]:focus {
-    width: 225px;
+    width: 100%;
     border: none;
     outline: none;
 }
