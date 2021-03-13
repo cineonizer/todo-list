@@ -4,9 +4,10 @@ import {Category} from './category';
 const taskContainer = document.querySelector('#task-container');
 
 function createTaskDom() {
-    taskContainer.innerHTML +=
-    `<div class="task">
-        <div class="task-left">
+    const newTaskDiv = document.createElement('div');
+    newTaskDiv.classList.add('task');
+    newTaskDiv.innerHTML = 
+        `<div class="task-left">
             <img src="assets/images/square-icon.svg"/>
             <span contenteditable="true" class="description"></span>
         </div>
@@ -15,19 +16,16 @@ function createTaskDom() {
             <div class="task-action-button">
                 <img class="delete-button" src="assets/images/delete-icon.svg"/>
             </div>
-        </div>
-    </div>`;
+        </div>`;
+    taskContainer.appendChild(newTaskDiv);
 }
 
-function editTaskDom(e) {
+function limitContentEditable(e, charMax) {
     const str = e.target.innerText;
-    const charMax = 25;
-
     if (e.key === 'Enter') e.target.blur();
-
     if (str.length >= charMax) {
         e.preventDefault();
-        //TODO
+        //TODO: FIX CHAR LIMIT
     }
 }
 
@@ -38,4 +36,9 @@ function deleteTaskDom(e) {
     }
 }
 
-export {createTaskDom, editTaskDom, deleteTaskDom}
+function updateTitleSpan(e) {
+    const titleSpan = document.querySelector('#title-name');
+    titleSpan.innerText = e.target.innerText;
+}
+
+export {createTaskDom, limitContentEditable, deleteTaskDom, updateTitleSpan}

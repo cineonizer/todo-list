@@ -12,15 +12,15 @@
         </div>
         <div id="sidebar"></div>
             <div id="sidebar-container">
-                <div class="view-button">
+                <div class="view-button" id="all-task-button">
                     <img src="assets/images/home-icon.svg"/>
                     <span>All Tasks</span>
                 </div>
-                <div class="view-button">
+                <div class="view-button" id="today-button">
                     <img src="assets/images/calendar-day.svg"/>
                     <span>Today</span>
                 </div>
-                <div class="view-button">
+                <div class="view-button" id="week-button">
                     <img src="assets/images/calendar-week.svg"/>
                     <span>Week</span>
                 </div>
@@ -28,12 +28,15 @@
                     <span id="category-title">Category</span>
                     <div class="category-button">
                         <img class="category-img" src="assets/images/list-icon.svg"/>
-                        <span contenteditable="true">School</span>
+                        <span contenteditable="true" class="category-name">School</span>
                         <div class="action-button">
-                            <img src="assets/images/edit-icon.svg"/>
                             <img src="assets/images/delete-icon.svg"/>
                         </div>
                     </div>
+                </div>
+                <div id="new-category-button">
+                    <img src="assets/images/add-icon.svg"/>
+                    <span>New Category</span>
                 </div>
             </div>
             <div id="main">
@@ -43,7 +46,7 @@
                         <span id="title-date">Due Date</span>
                     </div>
                     <div id="task-container"></div>
-                    <div id="new-button">
+                    <div id="new-task-button">
                         <img src="assets/images/add-icon.svg"/>
                         <span>New Task</span>
                     </div>
