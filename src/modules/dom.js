@@ -4,20 +4,20 @@ import {Category} from './category';
 const taskContainer = document.querySelector('#task-container');
 
 function createTaskDom() {
-    const newTaskDiv = document.createElement('div');
-    newTaskDiv.classList.add('task');
-    newTaskDiv.innerHTML = 
+    const taskDiv = document.createElement('div');
+    taskDiv.classList.add('task');
+    taskDiv.innerHTML = 
         `<div class="task-left">
-            <img src="assets/images/square-icon.svg"/>
+            <img data-img="checkbox" class src="assets/images/square-icon.svg"/>
             <span contenteditable="true" class="description"></span>
         </div>
         <div class="task-right">
             <input type="date" class="duedate"></span>
             <div class="task-action-button">
-                <img class="delete-button" src="assets/images/delete-icon.svg"/>
+                <img class="delete-task-button" src="assets/images/delete-icon.svg"/>
             </div>
         </div>`;
-    taskContainer.appendChild(newTaskDiv);
+    taskContainer.appendChild(taskDiv);
 }
 
 function limitContentEditable(e, charMax) {
@@ -30,15 +30,24 @@ function limitContentEditable(e, charMax) {
 }
 
 function deleteTaskDom(e) {
-    if (e.target.className === 'delete-button') {
-        const taskDiv = e.target.closest('.task');
-        taskDiv.parentNode.removeChild(taskDiv);
-    }
+    const taskDiv = e.target.closest('.task');
+    taskDiv.parentNode.removeChild(taskDiv);
 }
 
-function updateTitleSpan(e) {
-    const titleSpan = document.querySelector('#title-name');
-    titleSpan.innerText = e.target.innerText;
+function updateTitleDom(e) {
+    const titleDom = document.querySelector('#title-name');
+    titleSpan.innerText = e.target.innerText.trim();
 }
 
-export {createTaskDom, limitContentEditable, deleteTaskDom, updateTitleSpan}
+function deleteAllTasksDom() {
+    taskContainer.innerHTML = '';
+}
+
+function toggleCheckDom(e) {
+    if (e.target.closest('.task').classList.contains('checked')) e.target.src = 'assets/images/square-icon.svg';
+    else e.target.src = 'assets/images/square-checked-icon.svg';
+
+    e.target.closest('.task').classList.toggle('checked');
+}
+
+export {createTaskDom, limitContentEditable, deleteTaskDom, updateTitleDom, deleteAllTasksDom, toggleCheckDom}
