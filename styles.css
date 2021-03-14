@@ -175,7 +175,7 @@ body {
     justify-content: space-between;
     font-weight: 600;
     font-size: 1.35em;
-    padding: 0 94px 20px 15px;
+    padding: 0 58px 20px 15px;
 }
 
 #task-container {
@@ -225,10 +225,6 @@ body {
     align-items: center;
 }
 
-.task-right span {
-    margin: 0 30px;
-}
-
 .task-right img {
     opacity: 0.4;
     transition: opacity .125s linear;
@@ -244,6 +240,14 @@ body {
     display: flex;
     align-items: center;
     margin-right: 15px;
+}
+
+.checked {
+    color: rgba(0,0,0,0.1);
+}
+
+.checked input[type="date"] {
+    color: rgba(0,0,0,0.1);
 }
 
 #new-task-button {
