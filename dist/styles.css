@@ -88,6 +88,11 @@ body {
     border-radius: 10px;
 }
 
+#category-container {
+    overflow-y: scroll;
+    height: 432px;
+}
+
 .category-button {
     display: flex;
     align-items: center;
@@ -309,4 +314,5 @@ input[type="date"] {
     outline: none;
     border: none;
     width: 130px;
+    cursor: pointer;
 }

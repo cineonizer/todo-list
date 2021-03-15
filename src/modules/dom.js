@@ -2,6 +2,7 @@ import {Task} from './task';
 import {Category} from './category';
 
 const taskContainer = document.querySelector('#task-container');
+const categoryContainer = document.querySelector('#category-container');
 
 function createTaskDom() {
     const taskDiv = document.createElement('div');
@@ -50,4 +51,21 @@ function toggleCheckDom(e) {
     e.target.closest('.task').classList.toggle('checked');
 }
 
-export {createTaskDom, limitContentEditable, deleteTaskDom, updateTitleDom, deleteAllTasksDom, toggleCheckDom}
+function createCategoryDom(e) {
+    const categoryDiv = document.createElement('div');
+    categoryDiv.classList.add('category-button');
+    categoryDiv.innerHTML = `
+        <img class="category-img" src="assets/images/list-icon.svg"/>
+        <span contenteditable="true" class="category-name"></span>
+        <div class="action-button">
+            <img class="delete-category-button" src="assets/images/delete-icon.svg"/>
+        </div>`;
+    categoryContainer.appendChild(categoryDiv);
+}
+
+function deleteCategoryDom(e) {
+    const categoryBtnDiv = e.target.closest('.category-button');
+    categoryBtnDiv.parentNode.removeChild(categoryBtnDiv);
+}
+
+export {createTaskDom, limitContentEditable, deleteTaskDom, updateTitleDom, deleteAllTasksDom, createCategoryDom, deleteCategoryDom, toggleCheckDom}
