@@ -12,8 +12,7 @@ export class Category {
         this.tasks.push(task);
     }
 
-    deleteTask(taskIndex) {
-        this.tasks.splice(taskIndex, 1);
+    deleteTask(index) {
+        this.tasks.splice(index, 1);
     }
-
 }

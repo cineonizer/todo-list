@@ -12,10 +12,6 @@ export class Task {
     set updateDueDate(dueDate) {
         this.dueDate = dueDate;
     }
-
-    set updateDescr(name) {
-        this.name = name;
-    }
 }
 
 
