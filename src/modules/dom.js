@@ -32,6 +32,16 @@ function deleteCategoryDom(e) {
     categoryBtnDiv.parentNode.removeChild(categoryBtnDiv);
 }
 
+function updateTitleDom(e, title) {
+    const titleSpan = document.querySelector('#title-name');
+    titleSpan.innerText = title;
+}
+
+function showNewTaskBtnDom(e) {
+    const newTaskBtn = document.querySelector('#new-task-button');
+    newTaskBtn.style.display = 'block';
+}
+
 // function createTaskElement() {
 //     const taskDiv = document.createElement('div');
 //     taskDiv.classList.add('task');
@@ -72,4 +82,5 @@ function deleteCategoryDom(e) {
 //     return Array.prototype.indexOf.call(taskContainer.childNodes, e.target.closest('.task'));
 // }
 
-export {createCatDom, getCatIndex, getCatNameDom, limitChar, deleteCategoryDom}
+export {createCatDom, getCatIndex, getCatNameDom, limitChar, 
+    deleteCategoryDom, updateTitleDom, showNewTaskBtnDom}

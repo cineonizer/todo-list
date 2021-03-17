@@ -74,9 +74,10 @@
 // }
 
 
-import {createCategory, updateCategoryName, deleteCategory, selectCategory} from './modules/render';
+import {createCategory, updateCategoryName, deleteCategory, selectCategory, testEvent} from './modules/render';
 
 createCategory();
 updateCategoryName();
 deleteCategory();
 selectCategory();
+testEvent();
