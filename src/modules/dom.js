@@ -27,19 +27,20 @@ function limitChar(e, charMax) {
     if (str.length >= charMax) e.preventDefault();
 }
 
-function deleteCategoryDom(e) {
+function deleteCatDom(e) {
     const categoryBtnDiv = e.target.closest('.category-button');
     categoryBtnDiv.parentNode.removeChild(categoryBtnDiv);
 }
 
-function updateTitleDom(e, title) {
+function updateTitleDom(title) {
     const titleSpan = document.querySelector('#title-name');
     titleSpan.innerText = title;
 }
 
-function showNewTaskBtnDom(e) {
-    const newTaskBtn = document.querySelector('#new-task-button');
+function toggleNewTaskBtnDom(isEmpty) {
+    const newTaskBtn = document.querySelector('#toggle-new-task-button');
     newTaskBtn.style.display = 'block';
+    if(isEmpty) newTaskBtn.style.display = 'none';
 }
 
 // function createTaskElement() {
@@ -83,4 +84,4 @@ function showNewTaskBtnDom(e) {
 // }
 
 export {createCatDom, getCatIndex, getCatNameDom, limitChar, 
-    deleteCategoryDom, updateTitleDom, showNewTaskBtnDom}
+    deleteCatDom, updateTitleDom, toggleNewTaskBtnDom}

@@ -255,6 +255,10 @@ body {
     color: rgba(0,0,0,0.1);
 }
 
+#toggle-new-task-button {
+    display: none;
+}
+
 #new-task-button {
     width: 128px;
     display: flex;
@@ -264,7 +268,6 @@ body {
     padding: 5px 0;
     border-radius: 7.5px;
     user-select: none;
-    display: none;
 }
 
 #new-task-button:hover {
