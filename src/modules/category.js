@@ -8,6 +8,10 @@ export class Category {
         this.name = name;
     }
 
+    getTask(index) {
+        return this.tasks[index];
+    }
+
     addTask(task) {
         this.tasks.push(task);
     }

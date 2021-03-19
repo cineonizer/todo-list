@@ -37,41 +37,49 @@ function updateTitleDom(title) {
     titleSpan.innerText = title;
 }
 
-function toggleNewTaskBtnDom(isEmpty) {
+function toggleNewTaskBtnDom(isEmpty, e) {
     const newTaskBtn = document.querySelector('#toggle-new-task-button');
     newTaskBtn.style.display = 'block';
-    if(isEmpty) newTaskBtn.style.display = 'none';
+    document.querySelector('#new-task-button').setAttribute('data-index', getCatIndex(e));
+    if(isEmpty) {
+        newTaskBtn.style.display = 'none';
+    }
 }
 
-// function createTaskElement() {
-//     const taskDiv = document.createElement('div');
-//     taskDiv.classList.add('task');
-//     taskDiv.innerHTML = 
-//         `<div class="task-left">
-//             <img data-img="checkbox" class src="assets/images/square-icon.svg"/>
-//             <span contenteditable="true" class="description"></span>
-//         </div>
-//         <div class="task-right">
-//             <input type="date" class="duedate"></span>
-//             <div class="task-action-button">
-//                 <img class="delete-task-button" src="assets/images/delete-icon.svg"/>
-//             </div>
-//         </div>`;
-//     taskContainer.appendChild(taskDiv);
-// }
+function createTaskDom() {
+    const taskDiv = document.createElement('div');
+    taskDiv.classList.add('task');
+    taskDiv.innerHTML = 
+        `<div class="task-left">
+            <img data-img="checkbox" class src="assets/images/square-icon.svg"/>
+            <span contenteditable="true" class="description"></span>
+        </div>
+        <div class="task-right">
+            <input type="date" class="duedate"></span>
+            <div class="task-action-button">
+                <img class="delete-task-button" src="assets/images/delete-icon.svg"/>
+            </div>
+        </div>`;
+    taskContainer.appendChild(taskDiv);
+}
 
-// function deleteTaskElement(e) {
-//     const taskDiv = e.target.closest('.task');
-//     taskDiv.parentNode.removeChild(taskDiv);
-// }
+function deleteAllTasksDom() {
+    taskContainer.innerHTML = '';
+}
 
-// function updateTitleElement(e) {
+function getTaskNameDom(e) {
+    return e.target.innerText.trim();
+}
 
-// }
+function getTaskIndex(e) {
+    return Array.prototype.indexOf.call(taskContainer.childNodes, e.target.closest('.task'));
+}
 
-// function deleteAllTaskElements() {
-//     taskContainer.innerHTML = '';
-// }
+function deleteTaskDom(e) {
+    const taskDiv = e.target.closest('.task');
+    taskDiv.parentNode.removeChild(taskDiv);
+}
+
 
 // function toggleCheckElement(e) {
 //     if (e.target.closest('.task').classList.contains('checked')) e.target.src = 'assets/images/square-icon.svg';
@@ -79,9 +87,6 @@ function toggleNewTaskBtnDom(isEmpty) {
 //     e.target.closest('.task').classList.toggle('checked');
 // }
 
-// function getTaskIndex(e) {
-//     return Array.prototype.indexOf.call(taskContainer.childNodes, e.target.closest('.task'));
-// }
-
 export {createCatDom, getCatIndex, getCatNameDom, limitChar, 
-    deleteCatDom, updateTitleDom, toggleNewTaskBtnDom}
+    deleteCatDom, updateTitleDom, toggleNewTaskBtnDom, 
+    createTaskDom, deleteAllTasksDom, getTaskNameDom, getTaskIndex, deleteTaskDom}
