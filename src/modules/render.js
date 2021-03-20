@@ -3,7 +3,7 @@ import {Category} from './category';
 import {Task} from './task';
 import {createCatDom, getCatIndex, getCatNameDom, limitChar, 
     deleteCatDom, updateTitleDom, toggleNewTaskBtnDom, 
-    createTaskDom, deleteAllTasksDom, getTaskNameDom, getTaskIndex, deleteTaskDom} from './dom';
+    createTaskDom, deleteAllTasksDom, getTaskNameDom, getTaskIndex, deleteTaskDom, toggleCheckDom, updateTaskContainer} from './dom';
 
 const project = new Project();
 const newTaskBtn = document.querySelector('#new-task-button');
@@ -47,7 +47,15 @@ function selectCategory() {
             toggleNewTaskBtnDom(false, e);
             deleteAllTasksDom();
 
-            if (project.getCategory(getCatIndex(e)).tasks.length) console.log('not empty')
+            if (project.getCategory(getCatIndex(e)).tasks.length) {
+                const category = project.getCategory(newTaskBtn.getAttribute('data-index'));
+                const task = category.getTask(getTaskIndex(e));
+                console.log(task.name);
+                console.log(task.isComplete);
+                console.log(task.dueDate);
+                // updateTaskContainer();
+            }            
+            
             if (!project.getCategory(getCatIndex(e)).tasks.length) console.log('empty')
 
         }
@@ -84,6 +92,31 @@ function deleteTask() {
     });
 }
 
+function updateTaskDueDate() {
+    document.addEventListener('click', (e) => {
+        if (e.target.matches('.duedate')) {
+            const dateInputs = document.querySelectorAll('.duedate');
+            dateInputs.forEach(dateInput => dateInput.addEventListener('change', (e) => {
+                const category = project.getCategory(newTaskBtn.getAttribute('data-index'));
+                const task = category.getTask(getTaskIndex(e));
+                task.updateDueDate = e.target.value;
+                dateInput.innerText = e.target.value;
+            }));
+        }
+    });
+}
+
+function checkOffTask() {
+    document.addEventListener('click', (e) => {
+        if (e.target.getAttribute('data-img') === ('checkbox')) {
+            const category = project.getCategory(newTaskBtn.getAttribute('data-index'));
+            const task = category.getTask(getTaskIndex(e));
+            if (!task.isComplete) task.isComplete = true;
+            else task.isComplete = false;
+            toggleCheckDom(e);
+        }
+    });
+}
 
 function testEvent() {
     document.addEventListener('click', (e) => {
@@ -94,4 +127,4 @@ function testEvent() {
     })
 }
 
-export {createCategory, updateCategoryName, deleteCategory, selectCategory, createTask, updateTaskName, deleteTask, testEvent}
+export {createCategory, updateCategoryName, deleteCategory, selectCategory, createTask, updateTaskName, deleteTask, updateTaskDueDate, checkOffTask, testEvent}

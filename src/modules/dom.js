@@ -1,3 +1,5 @@
+import { createTask } from "./render";
+
 const taskContainer = document.querySelector('#task-container');
 const categoryContainer = document.querySelector('#category-container');
 
@@ -80,13 +82,16 @@ function deleteTaskDom(e) {
     taskDiv.parentNode.removeChild(taskDiv);
 }
 
+function toggleCheckDom(e) {
+    if (e.target.closest('.task').classList.contains('checked')) e.target.src = 'assets/images/square-icon.svg';
+    else e.target.src = 'assets/images/square-checked-icon.svg';
+    e.target.closest('.task').classList.toggle('checked');
+}
 
-// function toggleCheckElement(e) {
-//     if (e.target.closest('.task').classList.contains('checked')) e.target.src = 'assets/images/square-icon.svg';
-//     else e.target.src = 'assets/images/square-checked-icon.svg';
-//     e.target.closest('.task').classList.toggle('checked');
-// }
+function updateTaskContainer() {
+    createTaskDom();
+}
 
 export {createCatDom, getCatIndex, getCatNameDom, limitChar, 
     deleteCatDom, updateTitleDom, toggleNewTaskBtnDom, 
-    createTaskDom, deleteAllTasksDom, getTaskNameDom, getTaskIndex, deleteTaskDom}
+    createTaskDom, deleteAllTasksDom, getTaskNameDom, getTaskIndex, deleteTaskDom, toggleCheckDom, updateTaskContainer}

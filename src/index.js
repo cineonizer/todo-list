@@ -22,7 +22,7 @@
 //         toggleCheckDom(e);
 //     }
 
-import {createCategory, updateCategoryName, deleteCategory, selectCategory, testEvent, updateTaskName, createTask, deleteTask} from './modules/render';
+import {createCategory, updateCategoryName, deleteCategory, selectCategory, testEvent, updateTaskName, createTask, updateTaskDueDate, deleteTask, checkOffTask} from './modules/render';
 
 createCategory();
 updateCategoryName();
@@ -31,4 +31,6 @@ selectCategory();
 createTask();
 updateTaskName();
 deleteTask();
+updateTaskDueDate();
+checkOffTask();
 testEvent();
