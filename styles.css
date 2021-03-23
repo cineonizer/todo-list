@@ -90,7 +90,7 @@ body {
 
 #category-container {
     overflow-y: scroll;
-    height: 451px;
+    height: 541px;
 }
 
 .category-button {
@@ -319,4 +319,8 @@ input[type="date"] {
     border: none;
     width: 130px;
     cursor: pointer;
+}
+
+input[type="date"]:disabled {
+    background-color: transparent;
 }
