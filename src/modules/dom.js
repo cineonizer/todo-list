@@ -1,14 +1,12 @@
-import { createTask } from "./render";
-
 const taskContainer = document.querySelector('#task-container');
 const categoryContainer = document.querySelector('#category-container');
 
-function createCatDom() {
+function createCatDom(catName) {
     const categoryDiv = document.createElement('div');
     categoryDiv.classList.add('category-button');
     categoryDiv.innerHTML =
         `<img class="category-img" src="assets/images/list-icon.svg"/>
-        <span contenteditable="true" class="category-name"></span>
+        <span contenteditable="true" class="category-name">${catName}</span>
         <div class="action-button">
             <img class="delete-category-button" src="assets/images/delete-icon.svg"/>
         </div>`;
@@ -88,10 +86,31 @@ function toggleCheckDom(e) {
     e.target.closest('.task').classList.toggle('checked');
 }
 
-function updateTaskContainer() {
-    createTaskDom();
+function updateTaskContainer(numOfTasks, category, bool) {
+    for (let i = 0; i < numOfTasks; i++) {
+        let checkboxImg = 'assets/images/square-icon.svg';
+        const taskDiv = document.createElement('div');
+        taskDiv.classList.add('task');
+        if (category.tasks[i].isComplete) {
+            checkboxImg = 'assets/images/square-checked-icon.svg';
+            taskDiv.classList.add('checked');
+        }
+        taskDiv.innerHTML = 
+            `<div class="task-left">
+                <img data-img="checkbox" class="" src="${checkboxImg}"/>
+                <span contenteditable="${bool}" class="description">${category.tasks[i].name}</span>
+            </div>
+            <div class="task-right">
+                <input type="date" class="duedate" value="${category.tasks[i].dueDate}"></span>
+                <div class="task-action-button">
+                    <img class="delete-task-button" src="assets/images/delete-icon.svg"/>
+                </div>
+            </div>`;
+        taskContainer.appendChild(taskDiv);
+    }
 }
 
 export {createCatDom, getCatIndex, getCatNameDom, limitChar, 
     deleteCatDom, updateTitleDom, toggleNewTaskBtnDom, 
-    createTaskDom, deleteAllTasksDom, getTaskNameDom, getTaskIndex, deleteTaskDom, toggleCheckDom, updateTaskContainer}
+    createTaskDom, deleteAllTasksDom, getTaskNameDom, 
+    getTaskIndex, deleteTaskDom, toggleCheckDom, updateTaskContainer}

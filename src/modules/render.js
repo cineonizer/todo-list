@@ -3,9 +3,10 @@ import {Category} from './category';
 import {Task} from './task';
 import {createCatDom, getCatIndex, getCatNameDom, limitChar, 
     deleteCatDom, updateTitleDom, toggleNewTaskBtnDom, 
-    createTaskDom, deleteAllTasksDom, getTaskNameDom, getTaskIndex, deleteTaskDom, toggleCheckDom, updateTaskContainer} from './dom';
+    createTaskDom, deleteAllTasksDom, getTaskNameDom, 
+    getTaskIndex, deleteTaskDom, toggleCheckDom, updateTaskContainer} from './dom';
 
-const project = new Project();
+let project = new Project();
 const newTaskBtn = document.querySelector('#new-task-button');
 
 function createCategory() {
@@ -13,7 +14,7 @@ function createCategory() {
     newCategoryBtn.addEventListener('click', () => {
         const category = new Category('');
         project.addCategory(category);
-        createCatDom();
+        createCatDom('');
     });
 }
 
@@ -26,6 +27,7 @@ function updateCategoryName() {
     });
     document.addEventListener('keydown', (e) => {
         if (e.target.matches('.category-name')) limitChar(e, 19);
+        if (e.key === 'Tab') e.preventDefault();
     });
 }
 
@@ -33,9 +35,10 @@ function deleteCategory() {
     document.addEventListener('click', (e) => {
         if (e.target.matches('.delete-category-button')) {
             if (project.getCategory(getCatIndex(e)).name === document.querySelector('#title-name').textContent 
-            || !project.projects.length) toggleNewTaskBtnDom(true, e);
+                || !project.projects.length) toggleNewTaskBtnDom(true, e);
             project.deleteCategory(getCatIndex(e));
             deleteCatDom(e);
+            deleteAllTasksDom();
         }
     });
 }
@@ -46,18 +49,11 @@ function selectCategory() {
             updateTitleDom(project.getCategory(getCatIndex(e)).name);
             toggleNewTaskBtnDom(false, e);
             deleteAllTasksDom();
-
             if (project.getCategory(getCatIndex(e)).tasks.length) {
                 const category = project.getCategory(newTaskBtn.getAttribute('data-index'));
                 const task = category.getTask(getTaskIndex(e));
-                console.log(task.name);
-                console.log(task.isComplete);
-                console.log(task.dueDate);
-                // updateTaskContainer();
+                updateTaskContainer(category.tasks.length, category, true);
             }            
-            
-            if (!project.getCategory(getCatIndex(e)).tasks.length) console.log('empty')
-
         }
     });
 }
@@ -88,6 +84,7 @@ function deleteTask() {
         if (e.target.matches('.delete-task-button')) {
             project.getCategory(newTaskBtn.getAttribute('data-index')).deleteTask(getTaskIndex(e));
             deleteTaskDom(e);
+            storeData();
         }
     });
 }
@@ -118,13 +115,40 @@ function checkOffTask() {
     });
 }
 
-function testEvent() {
+function selectAllTasks() {
     document.addEventListener('click', (e) => {
         if (e.target.matches('#all-task-button')) {
-            console.log(project.projects)
+            deleteAllTasksDom();
+            toggleNewTaskBtnDom(true, e)
+            updateTitleDom('All Tasks');
+            for (let i = 0; i < project.projects.length; i++) {
+                updateTaskContainer(project.getCategory(i).tasks.length, project.getCategory(i), false);
+            }
+            updateTaskName();
+            const datePickers = document.querySelectorAll('.duedate');
+            datePickers.forEach(datePicker => datePicker.disabled = true);
         }
-        
     })
 }
 
-export {createCategory, updateCategoryName, deleteCategory, selectCategory, createTask, updateTaskName, deleteTask, updateTaskDueDate, checkOffTask, testEvent}
+function storeData() {
+    localStorage.setItem('savedProject', JSON.stringify(project.projects));
+    console.log(localStorage.savedProject);
+}
+
+function restoreData() {
+    if (localStorage.savedProject) {
+        const retrievedProject = localStorage.getItem('savedProject');
+        project.projects = JSON.parse(retrievedProject);
+        console.log(project.projects)
+        console.log(project.projects.name)
+        for (let i = 0; i < project.projects.length; i++) {
+            createCatDom(project.projects[i].name);
+        }
+    }
+}
+
+
+export {createCategory, updateCategoryName, deleteCategory, selectCategory, 
+    createTask, updateTaskName, deleteTask, updateTaskDueDate, 
+    checkOffTask, selectAllTasks, storeData, restoreData}

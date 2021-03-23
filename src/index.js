@@ -1,28 +1,8 @@
-// document.addEventListener('click', (e) => {
-//     const dateInputs = document.querySelectorAll('.duedate');
+import {createCategory, updateCategoryName, deleteCategory, selectCategory, 
+    selectAllTasks, updateTaskName, createTask, 
+    updateTaskDueDate, deleteTask, checkOffTask, storeData, restoreData} from './modules/render';
 
-//     if (e.target.className === 'delete-task-button') {
-//         const taskIndex = getTaskIndex(e);
-//         category.deleteTask(taskIndex);
-//         deleteTaskDom(e);
-//         return
-//     }
-//     if (e.target.className === 'duedate') {
-//         dateInputs.forEach(dateInput => dateInput.addEventListener('change', (e) => {
-//             const taskIndex = getTaskIndex(e);
-//             category.tasks[taskIndex].updateDueDate = e.target.value;
-//             dateInput.innerText = e.target.value;
-//         }));
-//     }
-
-//     if (e.target.getAttribute('data-img') === 'checkbox') {
-//         const taskIndex = getTaskIndex(e);
-//         if (!category.tasks[taskIndex].isComplete) category.tasks[taskIndex].isComplete = true;
-//         else category.tasks[taskIndex].isComplete = false;
-//         toggleCheckDom(e);
-//     }
-
-import {createCategory, updateCategoryName, deleteCategory, selectCategory, testEvent, updateTaskName, createTask, updateTaskDueDate, deleteTask, checkOffTask} from './modules/render';
+restoreData();
 
 createCategory();
 updateCategoryName();
@@ -33,4 +13,6 @@ updateTaskName();
 deleteTask();
 updateTaskDueDate();
 checkOffTask();
-testEvent();
+selectAllTasks();
+
+document.addEventListener('click', () => storeData());
