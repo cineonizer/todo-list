@@ -2,7 +2,7 @@ export class Project {
     constructor() {
         this.projects = [];
     }
-
+    
     getCategory(index) {
         return this.projects[index];
     }

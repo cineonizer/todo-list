@@ -3,7 +3,6 @@ import {createCategory, updateCategoryName, deleteCategory, selectCategory,
     updateTaskDueDate, deleteTask, checkOffTask, storeData, restoreData} from './modules/render';
 
 restoreData();
-
 createCategory();
 updateCategoryName();
 deleteCategory();
@@ -15,4 +14,5 @@ updateTaskDueDate();
 checkOffTask();
 selectAllTasks();
 
-document.addEventListener('click', () => storeData());
+['click', 'keyup'].forEach(action => document.addEventListener(action, () => storeData()));
+

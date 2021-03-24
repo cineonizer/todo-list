@@ -133,18 +133,18 @@ function selectAllTasks() {
 
 function storeData() {
     localStorage.setItem('savedProject', JSON.stringify(project.projects));
-    console.log(localStorage.savedProject);
 }
 
 function restoreData() {
     if (localStorage.savedProject) {
-        const retrievedProject = localStorage.getItem('savedProject');
-        project.projects = JSON.parse(retrievedProject);
-        console.log(project.projects)
-        console.log(project.projects.name)
-        for (let i = 0; i < project.projects.length; i++) {
-            createCatDom(project.projects[i].name);
-        }
+        const savedProject = localStorage.getItem('savedProject');
+        const renderProjects = JSON.parse(savedProject);
+        renderProjects.map(category => {
+            const retrievedCategory = new Category(category.name);
+            retrievedCategory.tasks = category.tasks;
+            project.addCategory(retrievedCategory);
+            createCatDom(category.name)
+        });
     }
 }
 
