@@ -145,9 +145,11 @@ function restoreData() {
             project.addCategory(retrievedCategory);
             createCatDom(category.name)
         });
+        for (let i = 0; i < project.projects.length; i++) {
+            updateTaskContainer(project.getCategory(i).tasks.length, project.getCategory(i), false);
+        }
     }
 }
-
 
 export {createCategory, updateCategoryName, deleteCategory, selectCategory, 
     createTask, updateTaskName, deleteTask, updateTaskDueDate, 
