@@ -25,3 +25,4 @@ Create a todo list application.
 * Practiced utilizing classes to create todo items objects.
 * Tried to apply object oriented programming principles as best as I could.
 * Practiced Single Responsibility Principle to clean up code and separate logic from DOM related code.
+* Again utilizied localStorage to store the user's todo list.
