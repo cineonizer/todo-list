@@ -26,4 +26,4 @@ Create a todo list application.
 * Tried to apply object-oriented programming principles as best as I could.
 * Practiced Single Responsibility Principle to clean up code and separate logic from DOM related code.
 * Utilized localStorage again to store the user's todo list.
-* More practice with setting up my projects with Webpack.
+* Practiced more with setting up my projects with webpack.
